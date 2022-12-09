@@ -1,0 +1,177 @@
+/*----------------------VISTAS-------------------*/
+/*Clientes Varones*/
+create view vista_cliente_varones as 
+select p.dni,p.nombres,p.apellidos from persona p inner join  cliente c on p.idPersona=c.idPersona
+where p.genero='H';
+/*Cliente Mujeres*/
+create view vista_cliente_mujeres as 
+select p.dni,p.nombres,p.apellidos  from persona p inner join  cliente c on p.idPersona=c.idPersona
+where p.genero='M';
+
+/*Ventas por cliente*/
+create view vista_cliente_ventas as select p.nombres,p.apellidos,count(distinct(idVenta)) as Cantidad  from 
+ detalle_venta d inner join cliente c on d.idCliente = c.idCliente
+                 inner join persona p on p.idPersona= c.idPersona
+                 group by d.idCliente;
+                 
+/*Ventas por producto*/
+create view vista_ventas_x_producto as select p.idProducto,p.nombre,count(d.idProducto) from detalle_venta d inner join producto p on d.idProducto=p.idProducto
+ group by d.idProducto;
+
+/*Cantidad vendida por producto*/
+create view vista_cantidad_vendida_x_producto as select p.idProducto,p.nombre,sum(d.unidades) as cantidad from detalle_venta d inner join producto p on d.idProducto=p.idProducto
+group by d.idProducto;
+
+/* --------------FUNCIONES----------------------*/
+
+/*FUNCION NOMBRE_CLIENTE*/
+DELIMITER $$
+CREATE FUNCTION NOMBRE_CLIENTE (ID_CLI INT)
+RETURNS VARCHAR(100)
+READS SQL DATA
+BEGIN
+	DECLARE RESPUESTA VARCHAR(100);
+     IF ID_CLI = 0 THEN 
+     SET RESPUESTA = "INGRESA UN NUMERO MAYOR QUE CERO";
+     ELSE
+     SET RESPUESTA = (SELECT CONCAT(p.nombres, ' ' ,p.apellidos) as nombre_cliente
+     FROM persona p inner join cliente c  on p.idPersona=c.idPersona
+     WHERE c.idCliente = ID_CLI);
+     END IF;
+	RETURN RESPUESTA;
+END$$
+DELIMITER ;
+/*Probando funcion nombre_cliente*/
+/*select nombre_cliente(1);*/
+
+/*FUNCION CALCULO_DEL_MONTO_FINAL*/
+DELIMITER $$
+CREATE FUNCTION CALCULO_DEL_MONTO_FINAL(MONTO_INICIAL INT,DESCUENTO INT)
+RETURNS FLOAT
+NO SQL
+BEGIN
+	DECLARE RESPUESTA FLOAT;
+     IF MONTO_INICIAL = 0 THEN 
+     SET RESPUESTA = 0;
+     ELSE
+     SET RESPUESTA = MONTO_INICIAL-DESCUENTO;
+     END IF;
+	RETURN RESPUESTA;
+END$$
+DELIMITER ;
+
+/*select CALCULO_DEL_MONTO_FINAL(1000,200) as monto;*/
+
+/*FUNCION PRECIO_DE_VENTA*/
+
+DELIMITER $$
+CREATE FUNCTION PRECIO_DE_VENTA (CANTIDAD INT, PRECIO FLOAT,DESCUENTO FLOAT)
+RETURNS FLOAT
+NO SQL
+BEGIN
+	DECLARE resultado FLOAT;
+    SET resultado = cantidad*(precio-descuento);
+	RETURN resultado;
+END$$
+DELIMITER ;
+
+/* --------------PROCEDIMIENTOS ALMACENADOS----------------------*/
+/*Procedimiento para ordenar*/
+DROP PROCEDURE IF EXISTS sp_order_table;
+DELIMITER //
+create procedure sp_order_table(
+in campo varchar(255), 
+in tipo_ordenamiento enum('asc','desc',''), 
+in tabla varchar(200)
+)
+begin 
+      if campo <> '' then 
+          set @ordenar = concat(' order by  ', campo);
+      else
+          set @ordenar = '';
+      end if;
+      if tipo_ordenamiento <> '' then 
+          set @tipo= concat(' ', tipo_ordenamiento);
+      else
+          set @tipo = '';
+      end if;
+      set @clausula = concat('select * from  ',tabla,@ordenar,@tipo);
+      prepare ejecutarSQL from @clausula;
+      execute ejecutarSQL;
+      deallocate prepare ejecutarSQL;
+end 
+//
+/*call sp_order_table('nombres','desc','persona');*/
+
+/*Procedimiento para evaluar documento duplicado*/
+
+DROP PROCEDURE IF EXISTS sp_check_duplicado;
+DELIMITER //
+create procedure sp_check_duplicado(IN n varchar(24))
+begin 
+if (select count(*) from persona where dni=n )>0 then 
+	   select 'duplicado' as estado;
+else 
+       select 'registrado' as estado;
+end if ;
+end 
+//
+/*call sp_check_duplicado('08428771');*/
+
+
+/*-----------------------TRIGGERS---------------------------------*/
+/*bitacora proveedor*/
+drop table espejo_proveedor; 
+create table if not exists espejo_proveedor (
+id int not null auto_increment,
+fecha datetime not null,
+hora datetime not null,
+usuario_id varchar(45),
+tipo_operacion varchar(45),
+primary key(id));
+
+/*Triger al insertar un nuevo registro*/
+create trigger insertar_log 
+after insert on proveedor 
+for each row
+insert into espejo_proveedor (fecha,hora,usuario_id,tipo_operacion)
+values
+(now(),curtime(),session_user(),'se inserta data');
+
+/*Triger al editar un registro*/
+create trigger update_log
+after update on proveedor
+for each row
+insert into espejo_proveedor 
+(fecha,hora,usuario_id,tipo_operacion)
+values
+(now(),curtime(),session_user(),'se actualiza dato');
+
+/*bitacora producto*/
+drop table espejo_producto; 
+create table if not exists espejo_producto (
+id int not null auto_increment,
+fecha datetime not null,
+hora datetime not null,
+usuario_id varchar(45),
+old_dato int,
+new_dato int,
+tipo_operacion varchar(45),
+primary key(id));
+
+/*Triger al insertar un nuevo registro*/
+create trigger insertar_log1 
+after insert on producto 
+for each row
+insert into espejo_producto(fecha,hora,usuario_id,new_dato,tipo_operacion)
+values
+(now(),curtime(),session_user(),NEW.precio,'se inserta data');
+
+/*Triger al editar un registro*/
+create trigger update_log1
+after update on producto
+for each row
+insert into espejo_producto 
+(fecha,hora,usuario_id,old_dato,new_dato,tipo_operacion)
+values
+(now(),curtime(),session_user(),OLD.precio,NEW.precio,'se actualiza dato');
