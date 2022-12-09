@@ -1,0 +1,235 @@
+INSERT INTO categoria values
+(null,'Tecnologia'),
+(null,'Electrodomesticos'),
+(null,'Navidad'),
+(null,'Deportes'),
+(null,'Dormitorio'),
+(null,'Ropa'),
+(null,'Hogar'),
+(null,'Supermecado');
+
+INSERT INTO subcategoria VALUES
+(null,1,'Televisores'),
+(null,1,'Audio'),
+(null,1,'Computo'),
+(null,1,'Telefonos'),
+(null,1,'Zona Gamer'),
+(null,1,'Camaras'),
+(null,1,'Smarthome y Domotica'),
+(null,2,'Lavado y Secado'),
+(null,2,'Refrigeracion'),
+(null,2,'Cocinas'),
+(null,2,'Electrodomesticos de cocina'),
+(null,2,'Electrodomesticos Del Hogar'),
+(null,2,'Cuidado Personal'),
+(null,2,'Climatizacion'),
+(null,2,'Equipamiento Del Hogar'),
+(null,4,'Fitness'),
+(null,4,'Bicicletas'),
+(null,4,'Camping'),
+(null,4,'Actividades Al Aire Libre'),
+(null,4,'Electromovilidad'),
+(null,4,'Deporte Dama'),
+(null,4,'Deporte Hombre'),
+(null,6,'Bebes'),
+(null,6,'Niñas'),
+(null,6,'Niños'),
+(null,6,'Mujer'),
+(null,6,'Deportivo Dama'),
+(null,6,'Hombre'),
+(null,6,'Deportivo Hombre'),
+(null,6,'Calzado Mujer'),
+(null,6,'Calzado Hombre'),
+(null,6,'Calzado Niño'),
+(null,6,'Calzado Niña');
+
+
+INSERT INTO almacen (nombre,direccion_1,cp,localidad,provincia) VALUES 
+('UniCenter','Jr 28 De Julio 148','15113','Los Olivos','Lima'),
+('MásModa','Jr 28 De Julio 537 A, Cercado','15113','Los Olivos','Lima'),
+('Terramoda','Av. 28 de Julio 878 1260 Miraflores - LIMA ','15113','Los Olivos','Lima'),
+('Pretty','Jr. Ucayali N° 388 ','15301','San Martin','Lima'),
+('TendiModas','Jr. Camaná 616','15302','Santa Anita','Lima'),
+('Bohemia','Jr.Callao 122 1er.Piso Cercado','15302','Santa Anita','Lima'),
+('Look','Av Independencia Cda 06','15314','San Isidro','Lima'),
+('Eleganza','Av. Salaverry 801','15314','San Isidro','Lima');
+
+INSERT INTO sexo values
+(null,'Masculino'),
+(null,'Femenino');
+
+INSERT INTO direccion values
+(null,'los jazminez','31','los olivos','lima'),
+(null,'los girasoles','29','san martin','lima'),
+(null,'los geranios','30','comas','lima'),
+(null,'las rosas','47','comas','lima'),
+(null,'bartolome herrera','48','comas','lima'),
+(null,'segundo domingo','50','san martin','lima'),
+(null,'las palmeras','57','los olivos','lima'),
+(null,'jr paucartambo','60','san isidro','lima'),
+(null,'universitaria','61','surco','lima'),
+(null,'los majes','62','surco','lima');
+
+INSERT INTO proveedor VALUES
+(null,1,'AMPAY MKT','987951399','20565732910'),
+(null,2,'B&F DOCE PERÚ S.A.','989723016','20601673739'),
+(null,3,'BULOS MOTORS S.A.C.','987273100','20557256084'),
+(null,4,'COMERCIAL ARCALUZ ','962098834','20458352608'),
+(null,5,'CUBO CONSULTORES','924941355','20602410430'),
+(null,6,'DURABUILD S.A.C.','994949631','20600190751'),
+(null,7,'ENVASES DEL PERU WILDOR EIR','989511496','20538579816'),
+(null,8,'FUBBALL','977184213','20548890897'),
+(null,9,'GRUPO TSI SAC','999297090','20516612143'),
+(null,10,'INDUSTRIAN PLASTICA CAUTE','920243922','20382757981');
+
+
+INSERT INTO marca VALUES
+(null,'LG'),
+(null,'SAMSUNG'),
+(null,'JVC'),
+(null,'DAEWOO'),
+(null,'ROKU'),
+(null,'SONY'),
+(null,'XIAOMI'),
+(null,'MOTOROLA'),
+(null,'RECCO'),
+(null,'INDURAMA'),
+(null,'MABE'),
+(null,'KLIMATIC'),
+(null,'BOSCH'),
+(null,'COLDEX'),
+(null,'ASUS'),
+(null,'LENOVO');
+
+INSERT INTO promocion VALUES 
+(null,'Descuento marcado por le propio producto','Precio',20,'2022-11-25','2022-11-07'),
+(null,'Mayor contenido de producto por el mismo precio','Obsequio',100,'2022-12-02','2022-12-10'),
+(null,'Productos complementarios a un precio inferior','Demostraciones',50,'2022-12-04','2022-12-12'),
+(null,'Cupones o vales de descuento','Cupones',200,'2022-11-15','2022-11-19'),
+(null,'Regalos directos','Dinamicas',75,'2022-12-17','2022-12-24');
+
+INSERT INTO persona (idPersona,dni,nombres,apellidos,genero) VALUES
+(null,'19811114','EMILIANO','AGUILAR MALLQUI','H'),
+(null,'23150497','SAMUEL AMADOR','ALANIA SABINO','H'),
+(null,'19979598',' TIMOTEO','ALANYA HUARACA','H'),
+(null,'07296320','HIPOLITO','ALAYO SANCHEZ','H'),
+(null,'31619357','GINA ELIZABETH','ANGELES ZIMIC','M'),
+(null,'08614939','ROSALBINA ISABEL','BENITES LLANOS','M'),
+(null,'25676103','GRACIELA ELVIRA','BRAVO ESPINOZA','M'),
+(null,'06544761','MARIA CARMELA','CALLE REYES','M'),
+(null,'08076051','EVA PAULA','CELADITA NICHO','M'),
+(null,'06703964','EDA MERCEDES','CHACON DIAZ','M'),
+(null,'07370340','JANETH ROSA','ESPINOZA CUELLAR','M'),
+(null,'27370449','JULIA CUNCA','FERNANDEZ CHAVEZ','M'),
+(null,'28215010','DAVID SILVESTRE',' GALINDO GALINDO','H'),
+(null,'06165211','ANA LUCIA','GALINDO HUAROTO','M'),
+(null,'19992915','RAUL','MIRANDA VILCAHUAMAN','H'),
+(null,'08428771','YOHNY TOBIAS','REYES CABALLERO','H'),
+(null,'10428973','SILVIA ELENA','RIOS MARTINEZ','M'),
+(null,'08599465','EDGARDO MANFREDO','ROBLADILLO HUANCA','H'),
+(null,'19980184','TEOFANES','ROJAS EVANGELISTA','H'),
+(null,'05257503','FAUSTO ARMANDO','RUIZ PEREZ','H'),
+(null,'06219672','ISABEL CANDELARIA','SALINAS MALLCO','M'),
+(null,'25410202','CARLOS GENARO','SEMINARIO MARTINEZ ','H'),
+(null,'07614785','JUAN AUGUSTO','SOTELO ESPINOZA','H'),
+(null,'06789215','LUIS OSWALDO','TEJADA BUSTAMANTE','H'),
+(null,'32021201','DANIEL EDUARDO','TORRES CALZADO','H');
+INSERT INTO cliente (idPersona,tipoCliente) VALUES
+(1,'N'),
+(2,'N'),
+(3,'N'),
+(4,'N'),
+(5,'N'),
+(6,'N'),
+(7,'N'),
+(8,'N');
+
+
+INSERT INTO vendedor(idPersona,turno) VALUES
+(9,'M'),
+(10,'T'),
+(11,'M'),
+(12,'T'),
+(13,'M'),
+(14,'T');
+
+
+INSERT INTO tiempo (idTiempo,fecha) VALUES 
+(null,'2022-10-12'),
+(null,'2022-10-13'),
+(null,'2022-10-14'),
+(null,'2022-10-15'),
+(null,'2022-10-16'),
+(null,'2022-10-17'),
+(null,'2022-10-18'),
+(null,'2022-10-19'),
+(null,'2022-10-20'),
+(null,'2022-10-21'),
+(null,'2022-10-22'),
+(null,'2022-10-23'),
+(null,'2022-10-24'),
+(null,'2022-10-25');
+
+
+INSERT INTO pago VALUES 
+(null,'efectivo'),
+(null,'cheques'),
+(null,'transferencias'),
+(null,'domiciliacion bancaria'),
+(null,'pagos contrareembolso'),
+(null,'tarjeta de credito/debito');
+
+INSERT INTO producto VALUES 
+(null,2,1,1,'Televisor 65 QN65Q80AAGXPE Qled 4k Smart',4229,10),
+(null,1,1,2,'Televisor 75 75NANO75SQA Nanocell 4K ThinQ Ai (2022)',4799,15),
+(null,3,1,3,'Televisor 50 LT-50KB527 Led Uhd Frameless Android 11 Smart',1099,10),
+(null,3,1,3,'Televisor 65 LT-65KB527 Led Uhd Frameless Android 11 Smart',1649,10),
+(null,3,1,3,'Televisor 70 LT-70KB608 Led Ultra Hd 4k Android Hdr Bt Smart',2199,10),
+(null,1,1,2,'Televisor 55 55UP7760PSB Led Uhd 4K Smart ThinQ Ai 2022',1599,10),
+(null,1,1,2,'Televisor 50 50UQ7500PSF Led Uhd 4K Smart ThinQ Ai 2022',1459,10),
+(null,1,1,2,'Televisor 43 43UP7500PSF Led Uhd 4k ThinQ',1229,10),
+(null,1,1,2,'Televisor 70 70NANO75SQA Nanocell 4K ThinQ Ai',3349,10),
+(null,1,1,2,'Televisor 65 65UP7760PSB Led Uhd 4K Smart ThinQ Ai 2022',2149,10),
+(null,2,4,4,'Smartphone Galaxy S22 128Gb 8Gb Single Sim Verde',5599,10),
+(null,2,4,4,'Smartphone Galaxy A13 64Gb 4Gb Single Sim Negro',679,10),
+(null,7,4,5,'TSmartphone Xiaomi Redmi 10a 6.5” 2Gb 32Gb Azul',599,10),
+(null,2,4,4,'Smartphone Galaxy S21 128Gb 6Gb Single Sim Gris',2699,10),
+(null,2,4,4,'Smartphone Galaxy A22 128Gb 4Gb Single',699,10),
+(null,2,4,4,'Smartphone Galaxy A33 128Gb 6Gb Single',1199,10),
+(null,7,4,5,'Smartphone Redmi 10A SL 64Gb 3Gb Dual Sim Silver',639,10),
+(null,7,4,5,'Smartphone Redmi Note 11 128Gb 4Gb Nano',979,10),
+(null,7,4,5,'XIAOMI REDMI A1 2GB 32GB LIGHT GREEN',399,10),
+(null,2,3,6,'Tablet Galaxy A7 SM-T220NZAAPEO 32Gb MediaTek MT8768N 8.7 Gris',579,10),
+(null,15,3,7,'Laptop Gamer Asus Tuf A15 15" Amd Ryzen 5',3699,10),
+(null,16,3,6,'Tablet M8 8505X 32Gb Android 9 Pie 8 Iron Grey',449,10),
+(null,2,3,6,'Tablet Galaxy A8 SM-X200NZALPEO',779,10),
+(null,16,3,7,'Laptop Gamer Ideapad 3 Amd Ryzen 5',3599,10),
+(null,16,3,7,'Laptop IdeaPad 1 AMD Ryzen 5 3500U',1888,10),
+(null,9,10,8,'Cocina 20 Blanca',389,10),
+(null,9,10,8,'Cocina 20 Gris Puerta Espejada',439,10),
+(null,12,10,8,'COCINA AOSTA 60+CAMP. CK601NE',2999,10),
+(null,10,10,8,'Cocina a Gas Indurama con Encendido Eléctrico',849,10),
+(null,13,10,8,'Cocina 24", Horno Grill a Gas Timer - Pro467 IX',2399,10),
+(null,11,10,8,'Cocina a Eléctrica Plateada 4 Hornillas 24',1099,10);
+
+INSERT INTO detalle_venta VALUES
+(1,1,1,1,1,1,1,1,2),
+(1,2,1,null,1,1,1,1,1),
+(1,11,1,null,1,1,1,1,1),
+(1,21,1,null,1,1,1,1,1),
+(2,1,1,null,2,1,1,1,1),
+(2,12,1,null,2,1,1,1,1),
+(2,20,1,null,2,1,1,1,1),
+(3,1,1,null,3,2,1,1,1),
+(3,4,2,null,3,2,1,1,1),
+(3,1,1,null,3,2,1,1,1),
+(4,2,1,null,1,3,1,4,2),
+(4,26,3,null,1,3,1,4,3),
+(5,6,4,null,4,4,1,2,2),
+(6,15,2,null,5,1,1,2,1),
+(7,31,4,null,6,2,1,3,2),
+(8,4,1,null,8,5,6,7,2),
+(9,19,1,null,4,4,1,8,4),
+(9,24,5,null,4,4,1,8,5),
+(9,25,5,null,4,4,1,8,2),
+(10,24,5,null,1,2,1,9,5);
