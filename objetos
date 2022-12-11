@@ -131,7 +131,7 @@ tipo_operacion varchar(45),
 primary key(id));
 
 /*Triger al insertar un nuevo registro*/
-create trigger insertar_log 
+create trigger Aft_Ins_proveedores 
 after insert on proveedor 
 for each row
 insert into espejo_proveedor (fecha,hora,usuario_id,tipo_operacion)
@@ -139,7 +139,7 @@ values
 (now(),curtime(),session_user(),'se inserta data');
 
 /*Triger al editar un registro*/
-create trigger update_log
+create trigger Aft_Upd_proveedores
 after update on proveedor
 for each row
 insert into espejo_proveedor 
@@ -160,7 +160,7 @@ tipo_operacion varchar(45),
 primary key(id));
 
 /*Triger al insertar un nuevo registro*/
-create trigger insertar_log1 
+create trigger Aft_Ins_Productos 
 after insert on producto 
 for each row
 insert into espejo_producto(fecha,hora,usuario_id,new_dato,tipo_operacion)
@@ -168,7 +168,7 @@ values
 (now(),curtime(),session_user(),NEW.precio,'se inserta data');
 
 /*Triger al editar un registro*/
-create trigger update_log1
+create trigger Aft_Upd_Productos
 after update on producto
 for each row
 insert into espejo_producto 
